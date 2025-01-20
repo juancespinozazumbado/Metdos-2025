@@ -1,4 +1,9 @@
-
+intro = """
+    Realiza la factorización LU de una matriz cuadrada no singular A.
+    :param A: Matriz cuadrada de tamaño n x n (no singular).
+    :return: Matrices L y U tales que A = LU.
+    """
+    
 def lu_factorizacion(A):
     
     n = len(A)
