@@ -1,4 +1,4 @@
-# Tarea 1: Resoluci´on de Sistemas de Ecuaciones Lineales
+# Tarea 1: Resolucion de Sistemas de Ecuaciones Lineales
 ### Docente: Dylan Benavides C
 
 ## MA0323: Metodos numericos 
@@ -25,4 +25,7 @@ b = np.array([2, 6, 1])
 ```
 
 ### Factorizacion LU
+
+
+
 
