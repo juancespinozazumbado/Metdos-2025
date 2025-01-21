@@ -51,7 +51,7 @@ A = np.array([[2, -1, 1],
 
 b = np.array([2, 6, 1])
 
-print("Matriz: ", A)
+print("Matriz: \n", A)
 print("Vector: ", b)
 
 x = gaussian_elimination_to_int(A, b)

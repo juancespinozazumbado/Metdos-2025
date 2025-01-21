@@ -14,6 +14,24 @@ def lu_factorizacion(A):
     
     ## implementar logica en caso de que la matriz sea singular
     ## devolver ambas matrices
+    
+    # Descompocision LU
+    for i in range(n):
+        # Llenar fila U
+        for j in range(i, n):
+            U[i][j] = A[i][j]
+            for k in range(i):
+                U[i][j] -= L[i][k] * U[k][j]
+
+        # Llenar columna L
+        L[i][i] = 1  # Diagonal de 1s
+        for j in range(i + 1, n):
+            L[j][i] = A[j][i]
+            for k in range(i):
+                L[j][i] -= L[j][k] * U[k][i]
+            L[j][i] //= U[i][i]
+
+    return L, U
 
   
 ### Imprimir matriz
@@ -29,6 +47,7 @@ A =  [[4, 3, 0],
 
 L, U = lu_factorizacion(A)
 
+print(intro)
 
 print("Matriz trinagular: ")
 print_matriz(A)
