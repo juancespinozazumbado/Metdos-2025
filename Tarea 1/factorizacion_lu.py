@@ -8,22 +8,31 @@ intro = """
     
 def lu_factorizacion(A):
     
-    
-    n = A.shape[0]
-    L = np.eye(n)  # Matriz identidad inicial para L
-    U = A.copy()   # Copia de A para trabajar en la matriz U
 
-    # # implementar logica en caso de que la matriz sea singular
-    # # devolver ambas matrices
+    n = len(A)
+    A = [[float(A[i][j]) for j in range(n)] for i in range(n)]
+
+
+    #Inicializa matrices L y U
+    L = [[0.0] * n for _ in range(n)]
+    U = [[0.0] * n for _ in range(n)]
+
+        
     for i in range(n):
-        if U[i, i] == 0:
-            raise ValueError("La matriz es singular y no puede factorizarse en LU.")
-            
-    # Descompocision LU
+        # Llenar la fila de U
+        for j in range(i, n):
+            U[i][j] = A[i][j]
+            for k in range(i):
+                U[i][j] -= L[i][k] * U[k][j]
+
+        # Llenar la columna de L
+        L[i][i] = 1.0  # Diagonal de 1s en L
         for j in range(i + 1, n):
-            factor = U[j, i] / U[i, i]
-            L[j, i] = factor
-            U[j, i:] -= factor * U[i, i:]
+            L[j][i] = A[j][i]
+            for k in range(i):
+                L[j][i] -= L[j][k] * U[k][i]
+            L[j][i] /= U[i][i]  # División con floats para precisión    
+
     return L, U
 
   
@@ -38,9 +47,9 @@ def print_matriz(M):
 #      [3, 7, -1],
 #      [0, -1, 4]]
 
-A = np.array([[2, -1, 1],
+A = [[2, -1, 1],
      [1, 3, 2],
-     [1, -4, -1.5]])
+     [1, -4, -1.5]]
 
 L, U = lu_factorizacion(A)
 
